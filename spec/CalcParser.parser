@@ -1,0 +1,43 @@
+%header {:
+	/* This code is inlined before the generated parser */
+	package ast;
+:};
+
+%embed {:
+	/* This code is inlined in the generated parser class */
+:};
+
+/* Just to shut up Beaver warnings */
+%goal goal;
+
+/* Precedence and associativity */
+%left TIMES, DIV, MOD;
+%left PLUS, MINUS;
+
+/* Productions with semantic actions building the JastAdd AST */
+
+program goal =
+	expression_list 	{:	return new Program(expression_list);	:}
+;
+
+List expression_list =
+	expression RES		{:	return new List().add(expression);	:}
+|	expression_list expression RES	{:	return expression_list.add(expression);	:}
+;
+ 
+Expression expression =
+	expression.e1 PLUS expression.e2
+		{:	return new BinaryExpression(PLUS, e1, e2);	:}
+|	expression.e1 MINUS expression.e2
+		{:	return new BinaryExpression(MINUS, e1, e2);	:}
+|	expression.e1 TIMES expression.e2
+		{:	return new BinaryExpression(TIMES, e1, e2);	:}
+|	expression.e1 DIV expression.e2
+		{:	return new BinaryExpression(DIV, e1, e2);	:}
+|	expression.e1 MOD expression.e2
+		{:	return new BinaryExpression(MOD, e1, e2);	:}
+|	ROUNDO expression.e1 ROUNDC
+		{:	return e1;					:}
+|	VALUE	{:	return new Number(Integer.parseInt(VALUE));	:}
+;
+
