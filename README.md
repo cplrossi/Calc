@@ -35,6 +35,12 @@ Just run
 
 to build a working jar file in the `jar` directory.
 
+Run
+
+	ant clean
+
+to clean up the project tree.
+
 ## Running
 
 We provide a shell script in the top-level directory, `run.sh` to try it out.
