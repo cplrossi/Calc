@@ -17,7 +17,7 @@ public class DeskCalc {
 		}
 
 		for (int i = 0; i < p.getNumExpression(); ++i)
-			System.err.printf("[%d] %d\n", i + 1, p.getExpression(i).result());
+			p.getExpression(i).pp();
 	}
 }
 

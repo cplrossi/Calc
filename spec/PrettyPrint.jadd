@@ -1,0 +1,9 @@
+/* Pretty print the result for an expression */
+
+aspect PrettyPrint {
+	
+	public void Expression.pp() {
+		System.out.println("result is " + result());
+	}
+}
+
