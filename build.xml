@@ -51,7 +51,7 @@
 	<target name="build" depends="generate">
 		<mkdir dir="build" />
 		<javac srcdir="." destdir="build" debug="true"
-		classpath=".:tools/beaver-rt.jar" />
+		classpath=".:tools/beaver-rt.jar" includeantruntime="false" />
 	</target>
 
 	<target name="jar" depends="build">
