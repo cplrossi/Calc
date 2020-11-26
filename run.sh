@@ -14,7 +14,14 @@ if [ -f "$JAR" ]; then
 		echo "[INFO] waiting for user input"
 	fi
 
-	java -cp tools/beaver-rt.jar:jar/Calc.jar prog.DeskCalc < $REDIR
+	# Trying to detect Cygwin on windows
+	if [ -d '/cygdrive' ]; then
+		CP_ARG='tools\beaver-rt.jar;jar\Calc.jar'
+	else
+		CP_ARG='tools/beaver-rt.jar:jar/Calc.jar'
+	fi
+
+	java -cp "$CP_ARG" prog.DeskCalc < $REDIR
 else
 	echo 'Please run ant before'
 	exit 1
