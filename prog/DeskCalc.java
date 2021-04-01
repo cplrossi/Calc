@@ -17,6 +17,7 @@ public class DeskCalc {
 			System.exit(1);
 		}
 
+		/* using pp() attribute to display all results */
 		for (Expr e : p.getExprList()) {
 			System.out.println(e.pp());
 		}
