@@ -17,7 +17,6 @@ import ast.CalcParser.Terminals;
 /* the interface between the scanner and the parser is the nextToken() method */
 %type beaver.Symbol
 %function nextToken
-%yylexthrow beaver.Scanner.Exception
 
 /* store line and column information in the tokens */
 %line
@@ -36,8 +35,7 @@ Value = [0-9]+
 
 %%
 
-/* discard whitespace information */
-{WhiteSpace} { }
+{WhiteSpace} 	{ /* discard */ }
 
 /* token definitions */
 "+"		{ return sym(Terminals.PLUS); }
@@ -50,8 +48,4 @@ Value = [0-9]+
 ")"		{ return sym(Terminals.ROUNDC); }
 {Value}		{ return sym(Terminals.VALUE); }
 <<EOF>>		{ return sym(Terminals.EOF); }
-
-/* error fallback */
-[^]		{ throw new Error("Illegal character <"
-			+ yytext() + ">"); }
 

@@ -11,9 +11,9 @@ public class DeskCalc {
 		try { 
 			p = (Program) new CalcParser()
 				.parse(new CalcScanner(new InputStreamReader(System.in)));
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.err.println("syntax error");
+			System.exit(1);
 		}
 
 		for (int i = 0; i < p.getNumExpr(); ++i)
