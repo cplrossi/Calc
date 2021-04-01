@@ -2,7 +2,7 @@
 
 aspect PrettyPrint {
 	
-	public void Expression.pp() {
+	public void Expr.pp() {
 		System.out.println("result is " + result());
 	}
 }

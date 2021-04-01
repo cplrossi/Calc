@@ -2,24 +2,32 @@
 
 aspect Result {
 
-	syn Integer Expression.result() = null;
+	syn Integer Expr.result() = null;
 
-	syn Integer BinaryExpression.result() {
-		if (getOp().equals("+"))
-			return getLeftE().result() + getRightE().result();
-		else if (getOp().equals("-"))
-			return getLeftE().result() - getRightE().result();
-		else if (getOp().equals("*"))
-			return getLeftE().result() * getRightE().result();
-		else if (getOp().equals("/"))
-			return getLeftE().result() / getRightE().result();
-		else if (getOp().equals("%"))
-			return getLeftE().result() % getRightE().result();
-		else {
-			System.err.println("unknown op");
-			return 0;
-		}
-	}
+//	syn Integer BinaryExpression.result() {
+//		if (getOp().equals("+"))
+//			return getLeftE().result() + getRightE().result();
+//		else if (getOp().equals("-"))
+//			return getLeftE().result() - getRightE().result();
+//		else if (getOp().equals("*"))
+//			return getLeftE().result() * getRightE().result();
+//		else if (getOp().equals("/"))
+//			return getLeftE().result() / getRightE().result();
+//		else if (getOp().equals("%"))
+//			return getLeftE().result() % getRightE().result();
+//		else {
+//			System.err.println("unknown op");
+//			return 0;
+//		}
+//	}
+
+	syn Integer BinaryExpr.result() =
+		getOp().equals("+") ? getLeft().result() + getRight().result()
+		: getOp().equals("-") ? getLeft().result() - getRight().result()
+		: getOp().equals("*") ? getLeft().result() * getRight().result()
+		: getOp().equals("/") ? getLeft().result() / getRight().result()
+		: getOp().equals("%") ? getLeft().result() % getRight().result()
+		: 0;
 
 	syn Integer Number.result() = getValue();
 }

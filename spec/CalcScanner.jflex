@@ -1,29 +1,29 @@
-/* Scanner specification for simple desk calculator */
+/* scanner specification for simple desk calculator */
 
-/* The generated parser will belong to package ast */
+/* the generated parser will belong to package ast */
 package ast;
 
-/* The terminals are implicitily defined in the parser */
+/* the terminals are implicitily defined in the parser */
 import ast.CalcParser.Terminals;
 
 %%
 
-/* Define the signature for the generated scanner */
+/* define the signature for the generated scanner */
 %public
 %final
 %class CalcScanner
 %extends beaver.Scanner
 
-/* The interface between the scanner and the parser is the nextToken() method */
+/* the interface between the scanner and the parser is the nextToken() method */
 %type beaver.Symbol
 %function nextToken
 %yylexthrow beaver.Scanner.Exception
 
-/* Store line and column information in the tokens */
+/* store line and column information in the tokens */
 %line
 %column
 
-/* This code will be inlined in the body of the generated scanner class */
+/* this code will be inlined in the body of the generated scanner class */
 %{
 	private beaver.Symbol sym(short id) {
 		return new beaver.Symbol(
@@ -36,10 +36,10 @@ Value = [0-9]+
 
 %%
 
-/* Discard whitespace information */
+/* discard whitespace information */
 {WhiteSpace} { }
 
-/* Token definitions */
+/* token definitions */
 "+"		{ return sym(Terminals.PLUS); }
 "-"		{ return sym(Terminals.MINUS); }
 "*"		{ return sym(Terminals.TIMES); }
@@ -51,6 +51,7 @@ Value = [0-9]+
 {Value}		{ return sym(Terminals.VALUE); }
 <<EOF>>		{ return sym(Terminals.EOF); }
 
-/* Error fallback */
-[^]		{ }
+/* error fallback */
+[^]		{ throw new Error("Illegal character <"
+			+ yytext() + ">"); }
 

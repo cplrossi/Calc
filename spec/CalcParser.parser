@@ -17,27 +17,27 @@
 /* Productions with semantic actions building the JastAdd AST */
 
 program goal =
-	expression_list 	{:	return new Program(expression_list);	:}
+	expr_list 		{: return new Program(expr_list); :}
 ;
 
-List expression_list =
-	expression RES		{:	return new List().add(expression);	:}
-|	expression_list expression RES	{:	return expression_list.add(expression);	:}
+List expr_list =
+	expr RES		{: return new List().add(expr);	:}
+|	expr_list expr RES	{: return expr_list.add(expr); :}
 ;
  
-Expression expression =
-	expression.e1 PLUS expression.e2
-		{:	return new BinaryExpression(PLUS, e1, e2);	:}
-|	expression.e1 MINUS expression.e2
-		{:	return new BinaryExpression(MINUS, e1, e2);	:}
-|	expression.e1 TIMES expression.e2
-		{:	return new BinaryExpression(TIMES, e1, e2);	:}
-|	expression.e1 DIV expression.e2
-		{:	return new BinaryExpression(DIV, e1, e2);	:}
-|	expression.e1 MOD expression.e2
-		{:	return new BinaryExpression(MOD, e1, e2);	:}
-|	ROUNDO expression.e1 ROUNDC
-		{:	return e1;					:}
-|	VALUE	{:	return new Number(Integer.parseInt(VALUE));	:}
+Expr expr =
+	expr.left PLUS expr.right
+		{: return new BinaryExpr(PLUS, left, right); :}
+|	expr.left MINUS expr.right
+		{: return new BinaryExpr(MINUS, left, right); :}
+|	expr.left TIMES expr.right
+		{: return new BinaryExpr(TIMES, left, right); :}
+|	expr.left DIV expr.right
+		{: return new BinaryExpr(DIV, left, right); :}
+|	expr.left MOD expr.right
+		{: return new BinaryExpr(MOD, left, right); :}
+|	ROUNDO expr ROUNDC
+		{: return expr; :}
+|	VALUE	{: return new Number(Integer.parseInt(VALUE)); :}
 ;
 

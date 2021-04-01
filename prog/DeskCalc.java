@@ -16,8 +16,8 @@ public class DeskCalc {
 			System.err.println("syntax error");
 		}
 
-		for (int i = 0; i < p.getNumExpression(); ++i)
-			p.getExpression(i).pp();
+		for (int i = 0; i < p.getNumExpr(); ++i)
+			p.getExpr(i).pp();
 	}
 }
 
