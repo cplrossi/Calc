@@ -4,20 +4,21 @@ import java.io.*;
 import ast.*;
 
 public class DeskCalc {
-	
+
 	public static void main(String[] args) {
 		Program p = null;
 
-		try { 
+		/* getting the AST from source input */
+		try {
 			p = (Program) new CalcParser()
 				.parse(new CalcScanner(new InputStreamReader(System.in)));
 		} catch (Exception e) {
-			System.err.println("syntax error");
+			System.err.println(e.getMessage());
 			System.exit(1);
 		}
 
-		for (int i = 0; i < p.getNumExpr(); ++i)
-			p.getExpr(i).pp();
+		for (Expr e : p.getExprList()) {
+			System.out.println(e.pp());
+		}
 	}
 }
-

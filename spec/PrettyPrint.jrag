@@ -1,0 +1,7 @@
+/* Pretty print the result for an expression */
+
+aspect PrettyPrint {
+
+	syn String Expr.pp() = "result is " + result();
+
+}
