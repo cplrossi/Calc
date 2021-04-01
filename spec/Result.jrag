@@ -10,8 +10,7 @@ aspect Result {
 		: getOp().equals("*") ? getLeft().result() * getRight().result()
 		: getOp().equals("/") ? getLeft().result() / getRight().result()
 		: getOp().equals("%") ? getLeft().result() % getRight().result()
-		: 0; /* can't reach this branch because lexer throws an exception on unrecognized token */
+		: 0; // unreachable because lexer throws an Exception on unrecognized token
 
 	syn Integer Number.result() = getValue();
 }
-
