@@ -4,7 +4,7 @@ aspect Result {
 
 	syn Integer Expr.result() = null;
 
-	syn Integer BinaryExpr.result() =
+	eq BinaryExpr.result() =
 		getOp().equals("+") ? getLeft().result() + getRight().result()
 		: getOp().equals("-") ? getLeft().result() - getRight().result()
 		: getOp().equals("*") ? getLeft().result() * getRight().result()
@@ -12,5 +12,5 @@ aspect Result {
 		: getOp().equals("%") ? getLeft().result() % getRight().result()
 		: 0; // unreachable because lexer throws an Exception on unrecognized token
 
-	syn Integer Number.result() = getValue();
+	eq Number.result() = getValue();
 }
