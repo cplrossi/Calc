@@ -13,4 +13,5 @@ aspect Result {
 		: 0; // unreachable because lexer throws an Exception on unrecognized token
 
 	eq Number.result() = getValue();
+	
 }
