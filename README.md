@@ -35,6 +35,8 @@ Just run
 
 to build a working jar file in the `jar` directory.
 
+## Cleaning
+
 Run
 
 	ant clean
