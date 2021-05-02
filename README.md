@@ -31,7 +31,7 @@ support).
 
 Just run
 
-	ant
+	$ ant
 
 to build a working jar file in the `jar` directory.
 
@@ -39,7 +39,7 @@ to build a working jar file in the `jar` directory.
 
 Run
 
-	ant clean
+	$ ant clean
 
 to clean up the project tree.
 If you encounter some problems on Cygwin environment, try to add the `-v` flag.
@@ -49,8 +49,8 @@ If you encounter some problems on Cygwin environment, try to add the `-v` flag.
 We provide a shell script in the top-level directory, `run.sh` to try it out.
 You can use stdin and then send EOF to process, simply running:
 
-	./run.sh
+	$ ./run.sh
 
 Or you can provide an input file, like `res/input0.asc` and then executing:
 
-	./run.sh res/input0.asc
+	$ ./run.sh res/input0.asc
